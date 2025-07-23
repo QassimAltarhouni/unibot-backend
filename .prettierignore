@@ -1,0 +1,9 @@
+node_modules
+build
+
+.env
+.dockerignore
+config/
+.idea/
+yarn.lock
+package-lock.json
