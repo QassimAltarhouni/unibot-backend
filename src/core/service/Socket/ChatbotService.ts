@@ -101,7 +101,7 @@ NOTAS: Todas las respuestas, encabezados y términos técnicos deben estar en es
 
       // Pass EVERYTHING to AI - let AI decide what to do
       const model = this.genAI.getGenerativeModel({
-        model: 'gemini-1.5-flash',
+        model: 'gemini-1.5-flash-latest',
       });
 
       // Prepare complete category data for AI analysis
