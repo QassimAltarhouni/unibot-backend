@@ -34,7 +34,6 @@
     "typescript": "^5.8.2"
   },
   "dependencies": {
-    "@google/genai": "^1.1.0",
     "@google/generative-ai": "^0.24.1",
     "@typegoose/typegoose": "^12.13.0",
     "@types/config": "^0.0.40",

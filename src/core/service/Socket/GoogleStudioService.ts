@@ -7,7 +7,13 @@ const GoogleStudioService = async (message: string) => {
     const config = {
       responseMimeType: 'text/plain',
     };
-    const model = 'gemini-2.5-flash-preview-04-17';
+    const rawModel = process.env.GOOGLE_STUDIO_MODEL?.trim();
+    const fallbackModel = 'models/gemini-1.5-flash';
+    const model = rawModel
+      ? rawModel.startsWith('models/')
+        ? rawModel
+        : `models/${rawModel}`
+      : fallbackModel;
     const contents = [
       {
         role: 'user',

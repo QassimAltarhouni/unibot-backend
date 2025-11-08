@@ -100,10 +100,14 @@ NOTAS: Todas las respuestas, encabezados y términos técnicos deben estar en es
       const userHistory = this.conversationHistory.get(userId) || [];
 
       // Pass EVERYTHING to AI - let AI decide what to do
-      const model = this.genAI.getGenerativeModel({
-        model: 'gemini-1.5-flash-latest',
-      });
+      const rawModel = process.env.GEMINI_MODEL?.trim();
+      const modelName = rawModel
+        ? rawModel.replace(/^models\//, '')
+        : 'gemini-1.5-flash';
 
+      const model = this.genAI.getGenerativeModel({
+        model: modelName,
+      });
       // Prepare complete category data for AI analysis
       const categoriesData = this.categories.map(cat => ({
         id: cat._id.toString(),
