@@ -101,9 +101,11 @@ NOTAS: Todas las respuestas, encabezados y términos técnicos deben estar en es
 
       // Pass EVERYTHING to AI - let AI decide what to do
       const rawModel = process.env.GEMINI_MODEL?.trim();
-      const modelName = rawModel
-        ? rawModel.replace(/^models\//, '')
-        : 'gemini-1.5-flash-latest';
+      const fallbackModel = 'models/gemini-1.5-flash-latest';
+      const configuredModel = rawModel && rawModel.length > 0 ? rawModel : fallbackModel;
+      const modelName = configuredModel.startsWith('models/')
+        ? configuredModel
+        : `models/${configuredModel}`;
 
       const model = this.genAI.getGenerativeModel({
         model: modelName,
