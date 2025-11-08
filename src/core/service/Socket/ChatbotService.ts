@@ -103,7 +103,7 @@ NOTAS: Todas las respuestas, encabezados y términos técnicos deben estar en es
       const rawModel = process.env.GEMINI_MODEL?.trim();
       const modelName = rawModel
         ? rawModel.replace(/^models\//, '')
-        : 'gemini-1.5-flash';
+        : 'gemini-1.5-flash-latest';
 
       const model = this.genAI.getGenerativeModel({
         model: modelName,

@@ -8,7 +8,7 @@ const GoogleStudioService = async (message: string) => {
       responseMimeType: 'text/plain',
     };
     const rawModel = process.env.GOOGLE_STUDIO_MODEL?.trim();
-    const fallbackModel = 'models/gemini-1.5-flash';
+    const fallbackModel = 'models/gemini-1.5-flash-latest';
     const model = rawModel
       ? rawModel.startsWith('models/')
         ? rawModel
