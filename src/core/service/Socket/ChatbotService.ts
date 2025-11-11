@@ -73,6 +73,14 @@ CONTEXTO CULTURAL: Usa contexto cultural hispano cuando sea apropiado.
 TONO: Profesional y servicial para ambiente académico.
 FORMATEO: Usa formato markdown apropiado para mejor legibilidad.
 NOTAS: Todas las respuestas, encabezados y términos técnicos deben estar en español.`,
+
+      // 🇦🇪 NEW LANGUAGE: ARABIC (ar)
+      ar: `
+RESPONSE LANGUAGE: أجب باللغة العربية الفصحى الحديثة فقط.
+CULTURAL CONTEXT: استخدم السياق الثقافي والأكاديمي العربي المناسب.
+TONE: احترافي وودود ومفيد، مناسب للبيئة الجامعية.
+FORMATTING: استخدم تنسيق markdown المناسب لتحسين القراءة (مثل العناوين والنقاط).
+NOTES: يجب أن تكون جميع الردود والمصطلحات التقنية باللغة العربية.`,
     };
 
     return (
@@ -100,16 +108,10 @@ NOTAS: Todas las respuestas, encabezados y términos técnicos deben estar en es
       const userHistory = this.conversationHistory.get(userId) || [];
 
       // Pass EVERYTHING to AI - let AI decide what to do
-      const rawModel = process.env.GEMINI_MODEL?.trim();
-      const fallbackModel = 'models/gemini-1.5-flash-latest';
-      const configuredModel = rawModel && rawModel.length > 0 ? rawModel : fallbackModel;
-      const modelName = configuredModel.startsWith('models/')
-        ? configuredModel
-        : `models/${configuredModel}`;
-
       const model = this.genAI.getGenerativeModel({
-        model: modelName,
+        model: 'gemini-2.5-flash-preview-09-2025',
       });
+
       // Prepare complete category data for AI analysis
       const categoriesData = this.categories.map(cat => ({
         id: cat._id.toString(),
@@ -122,8 +124,8 @@ NOTAS: Todas las respuestas, encabezados y términos técnicos deben estar en es
       const conversationContext =
         userHistory.length > 0
           ? `\n\nConversation History:\n${userHistory
-              .map(msg => `${msg.role}: ${msg.content}`)
-              .join('\n')}\n`
+            .map(msg => `${msg.role}: ${msg.content}`)
+            .join('\n')}\n`
           : '';
 
       const languageInstructions = this.getLanguageInstructions(language);
@@ -216,6 +218,9 @@ Current user query: "${message}"`;
         en: "⚠️ I'm having trouble accessing my knowledge base right now. Please try again in a moment.",
         pl: '⚠️ Mam obecnie problem z dostępem do mojej bazy wiedzy. Spróbuj ponownie za chwilę.',
         es: '⚠️ Tengo problemas para acceder a mi base de conocimientos ahora. Inténtalo de nuevo en un momento.',
+
+        // 🚨 NEW LANGUAGE: ARABIC (ar) Error Message
+        ar: '⚠️ أواجه مشكلة في الوصول إلى قاعدة بياناتي حاليًا. يرجى المحاولة مرة أخرى بعد قليل.',
       };
 
       return (
@@ -325,6 +330,19 @@ Current user query: "${message}"`;
         question: '❓ **¿Qué te gustaría saber?**',
         loading:
           '🔄 Actualmente estoy cargando mi base de conocimientos. ¡Intenta preguntarme algo en un momento!',
+      },
+
+      // 👋 NEW LANGUAGE: ARABIC (ar) Welcome Messages
+      ar: {
+        greeting: '👋 **مرحباً بك في يوني-بوت (UniBot)!**',
+        intro:
+          'أنا مساعدك الذكي الخاص **بجامعة فروتسواف للعلوم والتكنولوجيا**.',
+        topics: (count: number) =>
+          `📚 لدي معلومات حول **${count} موضوعاً** بما في ذلك:`,
+        moreTopic: (remaining: number) => `• و${remaining} مواضيع أخرى!`,
+        question: '❓ **ما الذي تود أن تعرفه؟**',
+        loading:
+          '🔄 أقوم حاليًا بتحميل قاعدة بياناتي. يرجى المحاولة والسؤال بعد لحظات!',
       },
     };
 
