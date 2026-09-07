@@ -3,7 +3,7 @@
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node Version](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)
 
-A powerful and scalable backend solution for modern web applications.
+UniBot Backend powers a multilingual AI university assistant for Wroclaw University of Science and Technology. It is built on my reusable Golden Backend architecture and extends it with MongoDB, JWT authentication, role-based authorization, Socket.IO, Swagger and Google Gemini integration.
 
 ## 📋 Requirements
 
@@ -17,8 +17,8 @@ A powerful and scalable backend solution for modern web applications.
 
 1. Clone the repository:
    ```bash
-   git clone <repo-url>
-   cd golden-backend
+   git clone https://github.com/QassimAltarhouni/unibot-backend.git
+   cd unibot-backend
    ```
 
 2. Install dependencies:
