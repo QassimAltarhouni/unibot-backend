@@ -81,14 +81,6 @@ Contains reusable functionality such as database connection helpers, JWT utiliti
 
 Handles the real-time communication between the UniBot client and the chatbot service through Socket.IO.
 
-## Golden Backend
-
-UniBot was not started from an empty Express project.
-
-It is based on **Golden Backend**, my reusable Node.js/TypeScript backend template. The template contains backend components that can be reused across different projects, while UniBot adds the application-specific functionality required for the university assistant.
-
-This approach allowed me to focus on the UniBot features instead of recreating the same backend foundation for every project.
-
 ## Getting started
 
 ### Requirements
