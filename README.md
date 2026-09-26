@@ -81,7 +81,7 @@ Contains reusable functionality such as database connection helpers, JWT utiliti
 
 Handles the real-time communication between the UniBot client and the chatbot service through Socket.IO.
 
-## Getting started
+##  Getting started
 
 ### Requirements
 
