@@ -16,7 +16,7 @@ const SERVER_PORT = process.env.SERVER_PORT ? Number(process.env.SERVER_PORT) : 
 const SMTP_USER = process.env.SMTP_USER || '';
 const SMTP_PASS = process.env.SMTP_PASS || '';
 const SMTP_HOST = process.env.SMTP_HOST || '';
-const SMTP_PORT = process.env.SMTP_PORT ? Number(process.env.SERVER_PORT) : 587;
+const SMTP_PORT = process.env.SMTP_PORT ? Number(process.env.SMTP_PORT) : 587;
 const SMTP_SECURE = process.env.SMTP_SECURE ? Boolean(process.env.SMTP_SECURE) : true;
 
 const LOG_LEVEL = process.env.LOG_LEVEL || 'info';
