@@ -1,0 +1,36 @@
+# Temporary helper: regenerates package-lock.json after package.json changes
+# on this branch. Removed again before the PR is merged.
+name: Sync lockfile
+
+on:
+  push:
+    branches: [test/jest-and-ci]
+    paths: [package.json]
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+
+      - name: Update package-lock.json
+        run: npm install --package-lock-only --ignore-scripts --no-audit --no-fund
+
+      - name: Commit lockfile if it changed
+        run: |
+          if git diff --quiet package-lock.json; then
+            echo "Lockfile already in sync"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          git commit -m "chore: update package-lock.json"
+          git push
