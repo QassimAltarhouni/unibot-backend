@@ -3,6 +3,7 @@ name: Debug output
 on:
   push:
     branches: [test/jest-and-ci]
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
