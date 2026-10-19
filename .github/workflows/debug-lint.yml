@@ -21,9 +21,7 @@ jobs:
           for cmd in "npx eslint ." "npx tsc --noEmit" "npx jest --ci"; do
             $cmd > out.txt 2>&1
             code=$?
-            echo "::warning title=$cmd exit $code::done"
-            grep -v '^\s*$' out.txt | grep -vE '^\s+at ' | head -60 | while IFS= read -r line; do
-              echo "::warning title=$cmd::${line//%/%25}"
-            done
+            body=$(grep -v '^\s*$' out.txt | grep -vE '^\s+at ' | head -150 | sed 's/%/%25/g' | awk 'BEGIN{ORS="%0A"}{print}')
+            echo "::warning title=$cmd (exit $code)::${body}"
           done
           exit 0
