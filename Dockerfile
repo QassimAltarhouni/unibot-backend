@@ -17,4 +17,4 @@ COPY . .
 #ENV NODE_ENV=production
 EXPOSE 3000
 RUN tsc
-CMD ["node", "-r ts-node/register/transpile-only -r tsconfig-paths/register build/src/app.js"]
+CMD ["node", "-r ts-node/register/transpile-only -r tsconfig-paths/register build/src/server.js"]

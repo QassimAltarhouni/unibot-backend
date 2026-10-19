@@ -1,13 +1,13 @@
 {
   "name": "unibot-backend",
   "version": "1.0.0",
-  "main": "src/app.ts",
+  "main": "src/server.ts",
   "author": "Mohammed Altarhouni",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon -r ts-node -r tsconfig-paths/register src/app.ts",
+    "dev": "nodemon -r ts-node -r tsconfig-paths/register src/server.ts",
     "build": "tsc",
-    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register build/src/app.js",
+    "start": "node -r ts-node/register/transpile-only -r tsconfig-paths/register build/src/server.js",
     "format": "prettier --write \"src/**/*.{js,ts}\""
   },
   "devDependencies": {
