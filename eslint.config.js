@@ -1,5 +1,5 @@
 const js = require('@eslint/js');
-const tsPlugin = require('@typescript-eslint/eslint-plugin');
+const tseslint = require('typescript-eslint');
 const globals = require('globals');
 
 module.exports = [
@@ -7,7 +7,7 @@ module.exports = [
     ignores: ['build/**', 'coverage/**', 'node_modules/**'],
   },
   js.configs.recommended,
-  ...tsPlugin.configs['flat/recommended'],
+  ...tseslint.configs.recommended,
   {
     files: ['**/*.ts'],
     languageOptions: {
