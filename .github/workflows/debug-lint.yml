@@ -1,0 +1,29 @@
+# Temporary: surfaces lint/build/test output as annotations. Removed before merge.
+name: Debug output
+on:
+  push:
+    branches: [test/jest-and-ci]
+permissions:
+  contents: read
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: npm
+      - run: npm ci
+      - name: Collect output
+        run: |
+          set +e
+          for cmd in "npx eslint ." "npx tsc --noEmit" "npx jest --ci"; do
+            $cmd > out.txt 2>&1
+            code=$?
+            echo "::warning title=$cmd exit $code::done"
+            grep -v '^\s*$' out.txt | grep -vE '^\s+at ' | head -60 | while IFS= read -r line; do
+              echo "::warning title=$cmd::${line//%/%25}"
+            done
+          done
+          exit 0
