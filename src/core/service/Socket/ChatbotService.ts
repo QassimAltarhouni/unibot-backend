@@ -289,7 +289,7 @@ Current user query: "${message}"`;
   }
 
   // DYNAMIC welcome message based on actual categories and language
-  welcomeMessage(userId: string, language?: string): Object {
+  welcomeMessage(userId: string, language?: string): object {
     if (language) {
       this.setUserLanguage(userId, language);
     }
@@ -386,7 +386,7 @@ Current user query: "${message}"`;
     userId: string,
     message: string,
     language?: string
-  ): Promise<Object> {
+  ): Promise<object> {
     const response = await this.getAIResponse(message, userId, language);
 
     return {
@@ -402,7 +402,7 @@ Current user query: "${message}"`;
   }
 
   // User message format
-  userMessage(userId: string, message: string, username: string): Object {
+  userMessage(userId: string, message: string, username: string): object {
     return {
       userId,
       text: message,
